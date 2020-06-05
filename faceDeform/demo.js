@@ -106,7 +106,7 @@ function main(){
 function init_faceFilter(videoSettings){
   JEEFACEFILTERAPI.init({
     canvasId: 'jeeFaceFilterCanvas',
-    NNCpath: './dist/', // root of NNC.json file
+    NNCpath: ' '../../../dist/'', // root of NNC.json file
     videoSettings: videoSettings,
     callbackReady: function(errCode, spec){
       if (errCode){
