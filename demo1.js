@@ -80,7 +80,7 @@ function init_threeScene(spec){
   /*
   faceLowPoly.json has been exported from dev/faceLowPoly.blend using THREE.JS blender exporter with Blender v2.76
   */
-  maskLoader.load('./models/faceLowPoly.json', function(maskBufferGeometry){
+  maskLoader.load('./faceLowPoly.json', function(maskBufferGeometry){
     maskBufferGeometry.computeVertexNormals();
     const threeMask = new THREE.Mesh(maskBufferGeometry, build_maskMaterial());
     threeMask.frustumCulled=false;
