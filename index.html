@@ -11,6 +11,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <script type="text/javascript">
+    function showModal(self) {
+        var modal = document.getElementById('modalWindow');
+        var iframe = modal.getElementsByTagName('iframe')[0];
+        iframe.src = self.href;
+        modal.style.display = 'block';
+        return false;
+    }
+</script>
 </head>
 <body class="is-preload">
 
@@ -30,7 +39,7 @@
         <!-- Main -->
         <div id="main">
             <article class="thumb">
-                <a href="images/fulls/01.jpg/" class="image"><img src="images/thumbs/01.jpg" alt="" /></a>
+                <a href="http://javascript.ru" onclick="return showModal(this);" class="image"><img src="images/thumbs/01.jpg" alt="" /></a>
                 <h2>Очки разбойника</h2>
                 <p>Почувствуйте себя в роли разбойника.</p>
             </article>
