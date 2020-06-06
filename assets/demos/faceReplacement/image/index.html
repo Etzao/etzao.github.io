@@ -89,6 +89,10 @@
       height: 144px;
       margin-top: 20px;
     }
+    .carouselItemvolk{
+      background-image: url('thumbnails/volk_mini.jpg');
+      width: 180px !important;
+    }
     .carouselItem0{
       background-image: url('thumbnails/Joconde.jpg');
       width: 86px !important;
@@ -163,7 +167,7 @@
     <link rel="stylesheet" type="text/css" href="../../../libs/slickCarousel/v1_9/slick-theme.css"/>
     <!-- jQuery (required by Slick Carousel) -->
     <script src='../../../libs/jquery/jquery-3.3.1.min.js'></script>
- 
+
   </head>
   
   <body onload="main()" style='color: white'>
@@ -180,6 +184,11 @@
       (and display the found face detected State in the JS console)
       Otherwise we build the image mask directly using the detected State.
     -->
+    <div id="carousel">
+      <div
+        onclick="change_artPainting('images/volk.jpg', {x:0.1361,y:0.0937,s:0.372,ry:-0.04926})"
+        class='carouselItem carouselItemvolk'
+      ></div>
     <div id="carousel">
       <div
         onclick="change_artPainting('images/Joconde.jpg', {x:-0.09803,y:0.44314,s:0.18782,ry:-0.04926})"
