@@ -1,26 +1,18 @@
-var canvas = document.querySelector("canvas");
-var ctx = canvas.getContext("2d");
-
-var video = document.querySelector("video");
-
-
-var videoStream = canvas.captureStream(30);
-var mediaRecorder = new MediaRecorder(videoStream);
-
-var chunks = [];
-mediaRecorder.ondataavailable = function(e) {
-  chunks.push(e.data);
-};
-
-mediaRecorder.onstop = function(e) {
-  var blob = new Blob(chunks, { 'type' : 'video/mp4' });
-  chunks = [];
-  var videoURL = URL.createObjectURL(blob);
-  video.src = videoURL;
-};
-mediaRecorder.ondataavailable = function(e) {
-  chunks.push(e.data);
-};
-
-mediaRecorder.start();
-setTimeout(function (){ mediaRecorder.stop(); }, 5000);
+  var canvas = document.getElementById("jeeFaceFilterCanvas");  
+  var streamRecorder = canvas.stream.record();
+  function stopRecording() {
+    streamRecorder.getRecordedData(gotData);
+  }
+  function gotData(blob) {
+    var x = new XMLHttpRequest();
+    x.open('POST', 'uploadMessage');
+    x.send(blob);
+  }
+  var frame = 0;
+  function updateCanvas() {
+    var ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, 640, 480);
+    ctx.fillText("Frame " + frame, 0, 200);
+    ++frame;
+  }
+  setInterval(updateCanvas, 30);
