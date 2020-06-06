@@ -1,198 +1,123 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="content-language" content="en-EN" />
+<head>
+    <meta charset="utf-8" />
+    <title>HTML5</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <style>
+        .col-sm, .modal-body {
+            padding: 0;
+        }
+
+        .close {
+            width: 50px;
+            height: 50px;
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .modal {
+            padding-left: 0px !important;
+        }
+
+        .modal-content {
+            border: 0;
+            border-radius: 0;
+        }
+
+        .position-absolute {
+            right: 0;
+            left: 0;
+        }
+
+        .modal-dialog {
+            width: 100%;
+            margin: 0;
+            max-width: none;
+        }
+
+        .main-wrapper {
+            height: 100vh;
+        }
+
+        .modal-footer {
+            height: 10vh;
+            padding: 0px;
+            width: 95%;
+            border: 0;
+        }
+
+        .fixed-bottom {
+            right: auto;
+            left: auto;
+        }
+
+        .section {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+    <script src="assets/js/jquery-3.5.1.min.js"></script>
+    <!-- Подключаем Bootstrap JS -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#opener").click(function () {
+                $('#exampleModal').modal('show');
+            });
+        });
+    </script>
+</head>
+<body>
+	<iframe src="https://etzao.github.io/assets/demos/babylonjs/cube/" width="800" height="600"></iframe>
     
-    <title>JEELIZ FACE FILTER : BABYLON.JS CUBE DEMO</title>
+	<div class="container-fluid">
+        <div class="row">
+            <div class="col-sm">
+                <div class="container-fluid">
+                    <img class="img-fluid position-absolute" src="images/01.jpg" />
+                    <div id="opener" class="opener position-absolute h-100"></div>
+                </div>
 
-    <script src="./assets/dist/jeelizFaceFilter.js"></script>
-    <script src="./assets/libs/babylonjs/v3_1/babylon.custom.js"></script>
+            </div>
+            <div class="col-sm">
+                <img class="img-fluid" src="images/01.jpg" />
+            </div>
+            <div class="col-sm">
+                <img class="img-fluid" src="images/01.jpg" />
+            </div>
+        </div>
 
-    <!-- INCLUDE DEMO SCRIPT -->
-    <script src="./assets/demos/babylonjs/cube/demo_cube.js"></script>
 
-    <!-- INCLUDE FORK ME ON GITHUB BANNER -->
-    <script src="./assets/demos/appearance/appearance/widget.js"></script>
+        <!-- Modal -->
+        <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog h-100" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
 
-    <link rel="stylesheet" href="./assets/demos/appearance/style.css" type="text/css" />
 
-    <!-- BABYLONJS CUSTOM SHADER MATERIAL GLSL CODES : -->
-    <script type="application/vertexShader" id="videoMatVertexShaderCode">
-      attribute vec3 position;
-      varying vec2 vUV;
+                        <div class="main-wrapper">
+                            <div class="section col-xs-9">
 
-      void main(void){
-        gl_Position=vec4(position, 1.);
-        vUV=0.5+0.5*position.xy;
-      }
-    </script>
+                            </div>
+                        </div>
 
-    <script type="application/fragmentShader" id="videoMatFragmentShaderCode">
-      precision lowp float;
-      uniform sampler2D samplerVideo;
-      varying vec2 vUV;
 
-      void main(void){
-        gl_FragColor=texture2D(samplerVideo, vUV);
-      }
-    </script>
+                    </div>
 
-  </head>
-  
-  <body onload="main()" style='color: white'>
-    <canvas width="600" height="600" id='jeeFaceFilterCanvas'></canvas>
-  </body>
+                    <button type="button" class="close position-absolute" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <div class="modal-footer fixed-bottom">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
 </html>
- 
- 
-
-<!-- <!DOCTYPE html> -->
-<!-- <html> -->
-<!-- <head> -->
-    <!-- <meta charset="utf-8" /> -->
-    <!-- <title>HTML5</title> -->
-    <!-- <link href="assets/css/bootstrap.css" rel="stylesheet"> -->
-    <!-- <style> -->
-        <!-- .col-sm, .modal-body { -->
-            <!-- padding: 0; -->
-        <!-- } -->
-
-        <!-- .close { -->
-            <!-- width: 50px; -->
-            <!-- height: 50px; -->
-            <!-- margin-left: auto; -->
-            <!-- margin-right: 0; -->
-        <!-- } -->
-
-        <!-- .modal { -->
-            <!-- padding-left: 0px !important; -->
-        <!-- } -->
-
-        <!-- .modal-content { -->
-            <!-- border: 0; -->
-            <!-- border-radius: 0; -->
-        <!-- } -->
-
-        <!-- .position-absolute { -->
-            <!-- right: 0; -->
-            <!-- left: 0; -->
-        <!-- } -->
-
-        <!-- .modal-dialog { -->
-            <!-- width: 100%; -->
-            <!-- margin: 0; -->
-            <!-- max-width: none; -->
-        <!-- } -->
-
-        <!-- .main-wrapper { -->
-            <!-- height: 100vh; -->
-        <!-- } -->
-
-        <!-- .modal-footer { -->
-            <!-- height: 10vh; -->
-            <!-- padding: 0px; -->
-            <!-- width: 95%; -->
-            <!-- border: 0; -->
-        <!-- } -->
-
-        <!-- .fixed-bottom { -->
-            <!-- right: auto; -->
-            <!-- left: auto; -->
-        <!-- } -->
-
-        <!-- .section { -->
-            <!-- height: 100%; -->
-            <!-- display: flex; -->
-            <!-- flex-direction: column; -->
-            <!-- justify-content: center; -->
-            <!-- align-items: center; -->
-        <!-- } -->
-    <!-- </style> -->
-
-    <!-- <script src="assets/js/jquery-3.5.1.min.js"></script> -->
-    <!-- <!-- Подключаем Bootstrap JS --> -->
-    <!-- <script src="assets/js/bootstrap.min.js"></script> -->
-    <!-- <script type="text/javascript"> -->
-        <!-- $(document).ready(function () { -->
-            <!-- $("#opener").click(function () { -->
-                <!-- $('#exampleModal').modal('show'); -->
-            <!-- }); -->
-        <!-- }); -->
-    <!-- </script> -->
-
-    <!-- <script src="assets/dist/jeelizFaceFilter.js"></script> -->
-    <!-- <script src="assets/libs/babylonjs/v3_1/babylon.custom.js"></script> -->
-    <!-- <script src="assets/presets/demo_cube.js"></script> -->
-
-    <!-- <script type="application/vertexShader" id="videoMatVertexShaderCode"> -->
-      <!-- attribute vec3 position; -->
-      <!-- varying vec2 vUV; -->
-
-      <!-- void main(void){ -->
-        <!-- gl_Position=vec4(position, 1.); -->
-        <!-- vUV=0.5+0.5*position.xy; -->
-      <!-- } -->
-    <!-- </script> -->
-
-    <!-- <script type="application/fragmentShader" id="videoMatFragmentShaderCode"> -->
-      <!-- precision lowp float; -->
-      <!-- uniform sampler2D samplerVideo; -->
-      <!-- varying vec2 vUV; -->
-
-      <!-- void main(void){ -->
-        <!-- gl_FragColor=texture2D(samplerVideo, vUV); -->
-      <!-- } -->
-    <!-- </script> -->
-
-<!-- </head> -->
-<!-- <body onload="main()"> -->
-	<!-- <canvas width="600" height="600" id='jeeFaceFilterCanvas'></canvas> -->
-    
-	<!-- <div class="container-fluid"> -->
-        <!-- <div class="row"> -->
-            <!-- <div class="col-sm"> -->
-                <!-- <div class="container-fluid"> -->
-                    <!-- <img class="img-fluid position-absolute" src="images/01.jpg" /> -->
-                    <!-- <div id="opener" class="opener position-absolute h-100"></div> -->
-                <!-- </div> -->
-
-            <!-- </div> -->
-            <!-- <div class="col-sm"> -->
-                <!-- <img class="img-fluid" src="images/01.jpg" /> -->
-            <!-- </div> -->
-            <!-- <div class="col-sm"> -->
-                <!-- <img class="img-fluid" src="images/01.jpg" /> -->
-            <!-- </div> -->
-        <!-- </div> -->
-
-
-        <!-- <!-- Modal --> -->
-        <!-- <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
-            <!-- <div class="modal-dialog h-100" role="document"> -->
-                <!-- <div class="modal-content"> -->
-                    <!-- <div class="modal-body"> -->
-
-
-                        <!-- <div class="main-wrapper"> -->
-                            <!-- <div class="section col-xs-9"> -->
-
-                            <!-- </div> -->
-                        <!-- </div> -->
-
-
-                    <!-- </div> -->
-
-                    <!-- <button type="button" class="close position-absolute" data-dismiss="modal" aria-label="Close"> -->
-                        <!-- <span aria-hidden="true">&times;</span> -->
-                    <!-- </button> -->
-
-                    <!-- <div class="modal-footer fixed-bottom"> -->
-                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button> -->
-                    <!-- </div> -->
-                <!-- </div> -->
-            <!-- </div> -->
-        <!-- </div> -->
-<!-- </body> -->
-<!-- </html> -->
