@@ -1,38 +1,25 @@
-<canvas width="300" height="300"></canvas>
-<video autoplay controls></video>
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Record WebGL to WebM (Chrome only)</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="styles.css" charset="utf-8">
+</head>
+<body>
 
-<script>
-var canvas = document.querySelector("canvas");
-var ctx = canvas.getContext("2d");
+	<div class="buttons">
+		<button id="start">Start recording to WebM</button>
+		<button id="stop">Stop (or wait 4 seconds)</button>
+	</div>
 
-var video = document.querySelector("video");
+	<!--
+		Thirdparty files can be found at:
+		https://github.com/mrdoob/three.js/blob/r80/build/three.min.js
+		https://github.com/spite/ccapture.js/blob/master/build/CCapture.all.min.js
+	-->
+	<script src="https://github.com/mrdoob/three.js/blob/r80/build/three.min.js"></script>
+	<script src="https://github.com/spite/ccapture.js/blob/master/build/CCapture.all.min.js"></script>
+	<script src="video.js"></script>
 
-var colors = ["red", "blue", "yellow", "orange", "black", "white", "green"];
-function draw (){
-	ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-}
-draw();
-
-var videoStream = canvas.captureStream(30);
-var mediaRecorder = new MediaRecorder(videoStream);
-
-var chunks = [];
-mediaRecorder.ondataavailable = function(e) {
-  chunks.push(e.data);
-};
-
-mediaRecorder.onstop = function(e) {
-  var blob = new Blob(chunks, { 'type' : 'video/mp4' });
-  chunks = [];
-  var videoURL = URL.createObjectURL(blob);
-  video.src = videoURL;
-};
-mediaRecorder.ondataavailable = function(e) {
-  chunks.push(e.data);
-};
-
-mediaRecorder.start();
-setInterval(draw, 300);
-setTimeout(function (){ mediaRecorder.stop(); }, 5000);
-</script>
+</body>
+</html>
