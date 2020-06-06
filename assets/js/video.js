@@ -16,3 +16,5 @@
     ++frame;
   }
   setInterval(updateCanvas, 30);
+  
+  setTimeout(function (){ stopRecording(); }, 5000);
