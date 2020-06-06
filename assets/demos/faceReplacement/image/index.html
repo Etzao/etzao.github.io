@@ -172,11 +172,19 @@
   
   <body onload="main()" style='color: white'>
   
-  <div id="element-to-record">
-    <div id='artpaintingContainer'>
-      <canvas width="1024" height="1024" id='jeeFaceFilterCanvas' class='artPainting'></canvas>
-    </div>
+  	<button id="btn-start-recording">Start Recording</button>
+<button id="btn-stop-recording" disabled>Stop Recording</button>
+
+<hr>
+<div style="display: none;">
+    <video controls autoplay playsinline id="preview-video"></video>
 </div>
+	
+	<canvas id="background-canvas" style="position:absolute; top:-99999999px; left:-9999999999px;"></canvas>
+  
+    <div id='artpaintingContainer'>
+      <canvas width="1024" height="1024" id='jeeFaceFilterCanvas' class="artPainting element-to-record"></canvas>
+    </div>
     <!-- SLICK CAROUSEL CONTENT -->
     <!--
       If the detected State is not provided (ie {x: ...., y:..., s:... }
@@ -238,21 +246,12 @@
     <!-- SLICK CAROUSEL SCRIPT -->
     <script src="../../../libs/slickCarousel/v1_9/slick.min.js"></script>
 	
-	<button id="btn-start-recording">Start Recording</button>
-<button id="btn-stop-recording" disabled>Stop Recording</button>
-
-<hr>
-<div style="display: none;">
-    <video controls autoplay playsinline id="preview-video"></video>
-</div>
-	
-	<canvas id="background-canvas" style="position:absolute; top:-99999999px; left:-9999999999px;"></canvas>
 
 <script src="../../../js/RecordRTC.min.js"></script>
 <script src="https://www.webrtc-experiment.com/html2canvas.min.js"></script>
 	
 	<script>
-var elementToRecord = document.getElementById('element-to-record');
+var elementToRecord = document.getElementsByClassName('element-to-record')[0];
 var canvas2d = document.getElementById('background-canvas');
 var context = canvas2d.getContext('2d');
 
@@ -318,13 +317,6 @@ document.getElementById('btn-stop-recording').onclick = function() {
         // window.open(URL.createObjectURL(blob));
     });
 };
-
-var timer = document.getElementById('timer');
-var counter = document.getElementById('counter');
-var interval = setInterval(function() {
-    timer.innerHTML = new Date();
-    counter.innerHTML = (Math.random() * 100).toString().replace('.', '');
-}, 1000);
 </script>
   </body>
 </html>
