@@ -3,13 +3,6 @@ var ctx = canvas.getContext("2d");
 
 var video = document.querySelector("video");
 
-var colors = ["red", "blue", "yellow", "orange", "black", "white", "green"];
-function draw (){
-	ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-}
-draw();
-
 var videoStream = canvas.captureStream(30);
 var mediaRecorder = new MediaRecorder(videoStream);
 
@@ -29,5 +22,4 @@ mediaRecorder.ondataavailable = function(e) {
 };
 
 mediaRecorder.start();
-setInterval(draw, 300);
 setTimeout(function (){ mediaRecorder.stop(); }, 5000);
