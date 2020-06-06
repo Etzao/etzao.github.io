@@ -1,57 +1,33 @@
-var elementToRecord = document.getElementById('element-to-record');
-var canvas2d = document.getElementById('background-canvas');
-var context = canvas2d.getContext('2d');
+var canvas = document.querySelector("canvas");
+var ctx = canvas.getContext("2d");
 
-canvas2d.width = elementToRecord.clientWidth;
-canvas2d.height = elementToRecord.clientHeight;
+var video = document.querySelector("video");
 
-var isRecordingStarted = false;
-var isStoppedRecording = false;
+var colors = ["red", "blue", "yellow", "orange", "black", "white", "green"];
+function draw (){
+	ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+draw();
 
-(function looper() {
-    if(!isRecordingStarted) {
-        return setTimeout(looper, 500);
-    }
+var videoStream = canvas.captureStream(30);
+var mediaRecorder = new MediaRecorder(videoStream);
 
-    html2canvas(elementToRecord).then(function(canvas) {
-        context.clearRect(0, 0, canvas2d.width, canvas2d.height);
-        context.drawImage(canvas, 0, 0, canvas2d.width, canvas2d.height);
-
-        if(isStoppedRecording) {
-            return;
-        }
-
-        requestAnimationFrame(looper);
-    });
-})();
-
-var recorder = new RecordRTC(canvas2d, {
-    type: 'canvas'
-});
-
-document.getElementById('btn-start-recording').onclick = function() {
-    this.disabled = true;
-    
-    isStoppedRecording =false;
-    isRecordingStarted = true;
-
-    recorder.startRecording();
-    document.getElementById('btn-stop-recording').disabled = false;
+var chunks = [];
+mediaRecorder.ondataavailable = function(e) {
+  chunks.push(e.data);
 };
 
-document.getElementById('btn-stop-recording').onclick = function() {
-    this.disabled = true;
-    
-    recorder.stopRecording(function() {
-        isRecordingStarted = false;
-        isStoppedRecording = true;
-
-        var blob = recorder.getBlob();
-        // document.getElementById('preview-video').srcObject = null;
-        document.getElementById('preview-video').src = URL.createObjectURL(blob);
-        document.getElementById('preview-video').parentNode.style.display = 'block';
-        elementToRecord.style.display = 'none';
-
-        // window.open(URL.createObjectURL(blob));
-    });
+mediaRecorder.onstop = function(e) {
+  var blob = new Blob(chunks, { 'type' : 'video/mp4' });
+  chunks = [];
+  var videoURL = URL.createObjectURL(blob);
+  video.src = videoURL;
 };
+mediaRecorder.ondataavailable = function(e) {
+  chunks.push(e.data);
+};
+
+mediaRecorder.start();
+setInterval(draw, 300);
+setTimeout(function (){ mediaRecorder.stop(); }, 5000);
