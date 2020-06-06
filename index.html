@@ -73,11 +73,14 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $(".opener").click(function () {
-			var openerObj = $(".opener");
                 $('#exampleModal').modal('show');
-				var openSrc = openerObj.attr("src");
+				var openSrc = $(this).attr("src");
 				$('#myFrame').attr("src",openSrc);
             });
+			
+			$('#exampleModal').on('hide.bs.modal', function (e) {
+			$('#myFrame').attr("src","");
+			})
         });
     </script>
 </head>
