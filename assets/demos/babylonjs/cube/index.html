@@ -3,10 +3,22 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="content-language" content="en-EN" />
-
+    
+    <title>JEELIZ FACE FILTER : BABYLON.JS CUBE DEMO</title>
+    
+    <!-- INCLUDE JEELIZ FACEFILTER SCRIPT -->
     <script src="../../../dist/jeelizFaceFilter.js"></script>
+
+    <!-- INCLUDE BABYLON.JS
+    this is a heavy version of Babylon.js, including many features
+    Build you own minified version of Babylon.js on https://www.babylonjs.com/versionbuilder/
+    -->
+    <script src="../../../libs/babylonjs/v3_1/babylon.custom.js"></script>
+
+    <!-- INCLUDE DEMO SCRIPT -->
     <script src="./demo_cube.js"></script>
 
+    <!-- BABYLONJS CUSTOM SHADER MATERIAL GLSL CODES : -->
     <script type="application/vertexShader" id="videoMatVertexShaderCode">
       attribute vec3 position;
       varying vec2 vUV;
@@ -29,16 +41,14 @@
 	
 	<style>
 	body{
-	padding:0;
 	margin:0;
 	}
 	</style>
 	
   </head>
   
-  <body onload="main()">
-  test message
-    <canvas style="width:100%;" id='jeeFaceFilterCanvas'></canvas>
+  <body onload="main()" style='color: white'>
+    <canvas style="width:100%" id='jeeFaceFilterCanvas'></canvas>
   </body>
 </html>
  
