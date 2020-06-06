@@ -73,23 +73,23 @@
     <!-- Подключаем Bootstrap JS -->
     <script src="assets/js/bootstrap.min.js"></script>
 
+
+        <script>
+            $(document).ready(function () {
+                $(".opener").click(function () {
+                    $('#exampleModal').modal('show');
+                    var openSrc = $(this).attr("src");
+                    $('#myFrame').attr("src", openSrc);
+                });
+
+                $('#exampleModal').on('hide.bs.modal', function (e) {
+                    $('#myFrame').attr("src", "");
+                });
+            });
+        </script>
+
 </head>
 <body>
-
-    <hr>
-    <div style="display: none;">
-        <video controls autoplay playsinline id="preview-video"></video>
-    </div>
-    <div id="element-to-record" style="border: 5px solid gray; border-radius: 5px; padding: 20px; margin: 20px;width: 480px; height: 360px;">
-        <input value="type something" style="width: 80%;font-size: 16px;"><br><br>
-        <span id="timer"></span><br><br>
-        <span id="counter"></span><br><br>
-    </div>
-
-    <canvas id="background-canvas" style="position:absolute; top:-99999999px; left:-9999999999px;"></canvas>
-
-
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm">
@@ -131,35 +131,11 @@
                     </button>
 
                     <div class="modal-footer fixed-bottom">
-                        <button id="btn-start-recording" class="btn">Start Recording</button>
-                        <button id="btn-stop-recording" class="btn" disabled>Stop Recording</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
                     </div>
                 </div>
             </div>
         </div>
-
-
-        <script src="assets/js/RecordRTC.min.js"></script>
-        <script src="https://www.webrtc-experiment.com/html2canvas.min.js"></script>
-
-        <script>
-            $(document).ready(function () {
-                $(".opener").click(function () {
-                    $('#exampleModal').modal('show');
-                    var openSrc = $(this).attr("src");
-                    $('#myFrame').attr("src", openSrc);
-                });
-
-                $('#exampleModal').on('hide.bs.modal', function (e) {
-                    $('#myFrame').attr("src", "");
-                })
-				
-				$("#btn-start-recording").click(function(){
-				$('iframe#myFrame').contents().find('div.carousel').append("Hallo, Welt!");
-				});
-            });
-        </script>
 
 </body>
 </html>
