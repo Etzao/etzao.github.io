@@ -8,18 +8,9 @@ canvas2d.height = elementToRecord.clientHeight;
 var isRecordingStarted = false;
 var isStoppedRecording = false;
 
-function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-
 (function looper() {
     if(!isRecordingStarted) {
-        return setTimeout(looper, 100);
+        return setTimeout(looper, 500);
     }
 
     html2canvas(elementToRecord).then(function(canvas) {
