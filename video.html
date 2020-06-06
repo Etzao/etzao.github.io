@@ -101,12 +101,5 @@ document.getElementById('btn-stop-recording').onclick = function() {
         // window.open(URL.createObjectURL(blob));
     });
 };
-
-var timer = document.getElementById('timer');
-var counter = document.getElementById('counter');
-var interval = setInterval(function() {
-    timer.innerHTML = new Date();
-    counter.innerHTML = (Math.random() * 100).toString().replace('.', '');
-}, 1000);
 </script>
 
