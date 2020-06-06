@@ -54,7 +54,7 @@ function getRandomColor() {
 
 (function looper() {
     if(!isRecordingStarted) {
-        return setTimeout(looper, 500);
+        return setTimeout(looper, 100);
     }
 
     html2canvas(elementToRecord).then(function(canvas) {
