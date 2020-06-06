@@ -73,7 +73,10 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#opener").click(function () {
+			var openerObj = $("#opener");
                 $('#exampleModal').modal('show');
+				var openSrc = openerObj.attr("src");
+				$('#myFrame').attr("src",openSrc);
             });
         });
     </script>
@@ -85,7 +88,7 @@
             <div class="col-sm">
                 <div class="container-fluid">
                     <img class="img-fluid position-absolute" src="images/01.jpg" />
-                    <div id="opener" class="opener position-absolute h-100"></div>
+                    <div id="opener" src="assets/demos/babylonjs/cube/index.html" class="opener position-absolute h-100"></div>
                 </div>
 
             </div>
@@ -107,7 +110,7 @@
 
                         <div class="main-wrapper">
                             <div class="section col-xs-9">
-							<iframe src="assets/demos/babylonjs/cube/index.html" scrolling="no"></iframe>
+							<iframe id="myFrame" src="" scrolling="no"></iframe>
                             </div>
                         </div>
  
