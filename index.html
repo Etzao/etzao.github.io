@@ -73,26 +73,34 @@
     </script>
 
     <script src="./assets/dist/jeelizFaceFilter.js"></script>
-    <script src="./assets/libs/aFrame/aframe-v0.8.2_modified.js"></script>
+    <script src="./assets/libs/babylonjs/v3_1/babylon.custom.js"></script>
     <script src="./assets/presets/demo_cube.js"></script>
 
-    <link rel="stylesheet" href="./assets/appearance/style.css" type="text/css" />
+    <script type="application/vertexShader" id="videoMatVertexShaderCode">
+      attribute vec3 position;
+      varying vec2 vUV;
+
+      void main(void){
+        gl_Position=vec4(position, 1.);
+        vUV=0.5+0.5*position.xy;
+      }
+    </script>
+
+    <script type="application/fragmentShader" id="videoMatFragmentShaderCode">
+      precision lowp float;
+      uniform sampler2D samplerVideo;
+      varying vec2 vUV;
+
+      void main(void){
+        gl_FragColor=texture2D(samplerVideo, vUV);
+      }
+    </script>
 
 </head>
 <body onload="main()">
-
-    <canvas width="600" height="600" id='jeeFaceFilterCanvas'></canvas>
-    <a-scene embedded>
-
-        <a-box id='jeelizFaceFilterFollow' position="0 0 0" rotation="0 0 0" width="1" height="1" depth="1" color="#4CC3D9"></a-box>
-
-        <a-sphere position="0 1.25 -5" radius="0.5" color="#EF2D5E"></a-sphere>
-        <a-cylinder position="1 0.75 -3" radius="0.2" height="0.5" color="#FFC65D"></a-cylinder>
-        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-        <a-sky color="#ECECEC"></a-sky>
-    </a-scene>
-
-    <div class="container-fluid">
+	<canvas width="600" height="600" id='jeeFaceFilterCanvas'></canvas>
+    
+	<div class="container-fluid">
         <div class="row">
             <div class="col-sm">
                 <div class="container-fluid">
