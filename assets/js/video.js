@@ -22,5 +22,5 @@ mediaRecorder.ondataavailable = function(e) {
   chunks.push(e.data);
 };
 
-//mediaRecorder.start();
-//setTimeout(function (){ mediaRecorder.stop(); }, 5000);
+mediaRecorder.start();
+setTimeout(function (){ mediaRecorder.stop(); }, 5000);
