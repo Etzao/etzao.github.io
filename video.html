@@ -1,36 +1,38 @@
+<canvas width="300" height="300"></canvas>
+<video autoplay controls></video>
 
-<style>
-    html, body {
-        margin: 0!important;
-        padding: 0!important;
-    }
+<script>
+var canvas = document.querySelector("canvas");
+var ctx = canvas.getContext("2d");
 
-    video {
-        width: auto;
-        max-width: 100%;
-    }
-</style>
+var video = document.querySelector("video");
 
-<title>HTML Element Recording | RecordRTC</title>
-<h1>HTML Element Recording using RecordRTC</h1>
+var colors = ["red", "blue", "yellow", "orange", "black", "white", "green"];
+function draw (){
+	ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+draw();
 
-<br>
+var videoStream = canvas.captureStream(30);
+var mediaRecorder = new MediaRecorder(videoStream);
 
-<button id="btn-start-recording">Start Recording</button>
-<button id="btn-stop-recording" disabled>Stop Recording</button>
+var chunks = [];
+mediaRecorder.ondataavailable = function(e) {
+  chunks.push(e.data);
+};
 
-<hr>
-<div style="display: none;">
-    <video controls autoplay playsinline id="preview-video"></video>
-</div>
-<div id="element-to-record" style="width: 480px; height: 360px;">
-<iframe src="assets/demos/faceReplacement/image/index.html" style="width:100%;height:100%;" id="myFrame" src="" scrolling="no"></iframe>
-	<input value="type something" style="width: 80%;font-size: 16px;"><br><br>
-</div>
+mediaRecorder.onstop = function(e) {
+  var blob = new Blob(chunks, { 'type' : 'video/mp4' });
+  chunks = [];
+  var videoURL = URL.createObjectURL(blob);
+  video.src = videoURL;
+};
+mediaRecorder.ondataavailable = function(e) {
+  chunks.push(e.data);
+};
 
-<canvas id="background-canvas" style="position:absolute; top:-99999999px; left:-9999999999px;"></canvas>
-
-<script src="assets/js/RecordRTC.min.js"></script>
-<script src="https://www.webrtc-experiment.com/html2canvas.min.js"></script>
-<script src="assets/js/video.js"></script>
-
+mediaRecorder.start();
+setInterval(draw, 300);
+setTimeout(function (){ mediaRecorder.stop(); }, 5000);
+</script>
