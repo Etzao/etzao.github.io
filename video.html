@@ -23,81 +23,14 @@
 <div style="display: none;">
     <video controls autoplay playsinline id="preview-video"></video>
 </div>
-<div id="element-to-record" style="border: 5px solid gray; border-radius: 5px; padding: 20px; margin: 20px;width: 480px; height: 360px;">
-    <input value="type something" style="width: 80%;font-size: 16px;"><br><br>
+<div id="element-to-record" style="width: 480px; height: 360px;">
+<iframe src="assets/demos/faceReplacement/image/index.html" style="width:100%;height:100%;" id="myFrame" src="" scrolling="no"></iframe>
+	<input value="type something" style="width: 80%;font-size: 16px;"><br><br>
 </div>
 
 <canvas id="background-canvas" style="position:absolute; top:-99999999px; left:-9999999999px;"></canvas>
 
 <script src="assets/js/RecordRTC.min.js"></script>
 <script src="https://www.webrtc-experiment.com/html2canvas.min.js"></script>
-
-<script>
-var elementToRecord = document.getElementById('element-to-record');
-var canvas2d = document.getElementById('background-canvas');
-var context = canvas2d.getContext('2d');
-
-canvas2d.width = elementToRecord.clientWidth;
-canvas2d.height = elementToRecord.clientHeight;
-
-var isRecordingStarted = false;
-var isStoppedRecording = false;
-
-function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-
-(function looper() {
-    if(!isRecordingStarted) {
-        return setTimeout(looper, 100);
-    }
-
-    html2canvas(elementToRecord).then(function(canvas) {
-        context.clearRect(0, 0, canvas2d.width, canvas2d.height);
-        context.drawImage(canvas, 0, 0, canvas2d.width, canvas2d.height);
-
-        if(isStoppedRecording) {
-            return;
-        }
-
-        requestAnimationFrame(looper);
-    });
-})();
-
-var recorder = new RecordRTC(canvas2d, {
-    type: 'canvas'
-});
-
-document.getElementById('btn-start-recording').onclick = function() {
-    this.disabled = true;
-    
-    isStoppedRecording =false;
-    isRecordingStarted = true;
-
-    recorder.startRecording();
-    document.getElementById('btn-stop-recording').disabled = false;
-};
-
-document.getElementById('btn-stop-recording').onclick = function() {
-    this.disabled = true;
-    
-    recorder.stopRecording(function() {
-        isRecordingStarted = false;
-        isStoppedRecording = true;
-
-        var blob = recorder.getBlob();
-        // document.getElementById('preview-video').srcObject = null;
-        document.getElementById('preview-video').src = URL.createObjectURL(blob);
-        document.getElementById('preview-video').parentNode.style.display = 'block';
-        elementToRecord.style.display = 'none';
-
-        // window.open(URL.createObjectURL(blob));
-    });
-};
-</script>
+<script src="assets/js/video.js"></script>
 
