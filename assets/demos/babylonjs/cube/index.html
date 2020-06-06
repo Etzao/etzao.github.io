@@ -26,11 +26,18 @@
         gl_FragColor=texture2D(samplerVideo, vUV);
       }
     </script>
-
+	
+	<style>
+	body{
+	padding:0;
+	margin:0;
+	}
+	</style>
+	
   </head>
   
   <body onload="main()">
-    <canvas id='jeeFaceFilterCanvas'></canvas>
+    <canvas style="background-color:red; width:100%;" id='jeeFaceFilterCanvas'></canvas>
   </body>
 </html>
  
